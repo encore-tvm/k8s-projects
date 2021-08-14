@@ -5,7 +5,7 @@ hpipeline {
         stage('Deploy to Docker'){
             steps{
                 sshagent(['centos-docker']) {
-                    sh "ssh centos@192.168.10.37 docker ps"
+                    sh "ssh centos@192.168.10.37 echo"
                 }
             }
         }
