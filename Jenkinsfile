@@ -5,7 +5,7 @@ hpipeline {
         stage('Deploy to Docker'){
             steps{
                 sshagent(['centos-docker']) {
-                    sh "ssh -o StrictHostKeyChecking=no centos@192.168.10.37 docker ps"
+                    sh "scp -o StrictHostKeyChecking=no Jenkinsfile centos@192.168.10.37:/tmp"
                 }
             }
         }
