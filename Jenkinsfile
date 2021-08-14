@@ -1,5 +1,7 @@
 pipeline {
     agent any
+
+    stages{
         stage('Deploy to Docker'){
             steps{
                 sshagent(['centos-docker']) {
@@ -7,4 +9,5 @@ pipeline {
                 }
             }
         }
+    }
 }
