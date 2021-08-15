@@ -67,7 +67,8 @@ pipeline {
                     //remote.allowAnyHosts = true
                     
                     sshagent(['k8s-master']) {
-                        sh 'scp -o StrictHostKeyChecking=no Deployments.yaml vagrant@192.168.20.11:/tmp'
+                        sh "SSH_AUTH_SOCK=${env.SSH_AUTH_SOCK} ssh-add -l"
+                        sh "scp -o StrictHostKeyChecking=no Deployments.yaml vagrant@192.168.20.11:/tmp"
                     }
                 }
             }
