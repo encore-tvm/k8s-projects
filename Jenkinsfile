@@ -65,9 +65,11 @@ pipeline {
                     remote.user = 'vagrant'
                     remote.password = 'vagrant'
                     remote.allowAnyHosts = true
+                    stage('Put Deployments.yaml onto k8smaster') {
+                        sshPut remote: remote, from: 'Deployments.yaml', into: '.'
+                    } 
                 }
             }
         } 
-        
     }
 }
