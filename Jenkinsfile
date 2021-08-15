@@ -59,15 +59,16 @@ pipeline {
         stage("SSH Into k8s Server") {
             steps { 
                 script {
-                    def remote = [:]
-                    remote.name = 'K8S master'
-                    remote.host = '192.168.20.11'
-                    remote.user = 'vagrant'
-                    remote.password = 'vagrant'
-                    remote.allowAnyHosts = true
-                    stage('Put Deployments.yaml onto k8smaster') {
-                        sshPut remote: remote, from: 'Deployments.yaml', into: '.'
-                    } 
+                    //def remote = [:]
+                   // remote.name = 'K8S master'
+                    //remote.host = '192.168.20.11'
+                    //remote.user = 'vagrant'
+                   // remote.password = 'vagrant'
+                    //remote.allowAnyHosts = true
+                    
+                    sshagent(['k8s-master']) {
+                        sh 'scp -o StrictHostKeyChecking=no Deployments.yaml vagrant@192.168.20.11:/tmp'
+                    }
                 }
             }
         } 
