@@ -22,11 +22,13 @@ pipeline {
             }
         }
         
-        stage("Docker Build"){
-            sh 'docker version'
-            sh 'docker build -t my-node-app .'
-            sh 'docker images'
+        stage("Docker Build 1"){
+            steps {
+                sh 'docker version'
+                sh 'docker build -t my-node-app .'
+            }
         }
+        
         stage('Uploading Image') {
             steps {
                 script {
