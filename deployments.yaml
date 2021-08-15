@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mywebapp
+  name: mywebapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mywebapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mywebapp
+    spec:
+      containers:
+      - image: encoretvm/myfirstapp
+        name: myfirstapp
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: mywebapp
+  name: service-mywebapp
+spec:
+
+  type: NodePort
+  ports:
+  - port: 8090
+    protocol: TCP
+    targetPort: 3000
+    nodePort: 32090
+  selector:
+    app: mywebapp
+status:
+  loadBalancer: {}
