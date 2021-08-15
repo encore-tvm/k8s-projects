@@ -42,7 +42,8 @@ pipeline {
         stage('Docker Run') {
             steps {
                 script {
-                dockerImage.run("-p 8090:3000 --rm --name mypythonappContainer")
+                    dockerImage.run("-p 8090:3000 --rm --name myWebContainer")
+                }
             }
         }
         
