@@ -38,5 +38,13 @@ pipeline {
                 sh 'docker container ls -a -fname=myWebContainer -q | xargs -r docker container rm'
             }
         }
+        // Running Docker container, make sure port 8090 is opened in 
+        stage('Docker Run') {
+            steps {
+                script {
+                dockerImage.run("-p 8090:3000 --rm --name mypythonappContainer")
+            }
+        }
+        
     }
 }
