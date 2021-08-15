@@ -34,8 +34,8 @@ pipeline {
         // Stopping Docker containers for cleaner Docker run
         stage('docker stop container') {
             steps {
-                sh 'docker ps -f name=myWebContainer -q | xargs --no-run-if-empty docker container stop'
-                sh 'docker container ls -a -fname=myWebContainer -q | xargs -r docker container rm'
+                // sh 'docker ps -f name=myWebContainer -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=myWebContainer -q | xargs -r docker container rm -f'
             }
         }
         // Running Docker container, make sure port 8090 is opened in 
